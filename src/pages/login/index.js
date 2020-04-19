@@ -1,13 +1,16 @@
 import router from 'umi/router';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import style from './index.less'
+import Util from './../../util';
+import style from './index.less';
+
+const { handleLocalStorage } = Util;
 function Login(props) {
     const { getFieldDecorator } = props.form;
     const handleSubmit = e => {
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if(!err){
-                localStorage.setItem('user', JSON.stringify({
+                handleLocalStorage.set('user', JSON.stringify({
                     username: values.username,
                     password: values.password
                 }));

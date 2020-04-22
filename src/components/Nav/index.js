@@ -1,17 +1,23 @@
+import React, { Component } from 'react';
 import NavLink from 'umi/navlink';
 import withRouter from 'umi/withRouter';
-import { useState, useEffect } from 'react';
 import { Menu, Icon } from "antd";
-import menuConfig from "../../config/menuConfig.js";
+import menuConfig from "../../config/routerConfig.js";
 import style from './index.less';
 
 const { SubMenu, Item } = Menu;
-function Nav(props) {
-    const [pathname, setPathname] = useState(null);
-    // const [menuNodeTree, setMenuNodeTree] = useState(null);
-    const renderMenu = menuConfig => {
+class Nav extends Component{
+    state = {}
+    componentWillMount() {
+        const menuNodeTree = this.renderMenu(menuConfig);
+        this.setState({
+            menuNodeTree,
+            pathname: this.props.location.pathname
+        });
+    }
+    renderMenu = menuConfig => {
         return menuConfig.map((item) => {
-            if(item.children){
+            if(item.routes){
                 return (
                     <SubMenu title={
                                 <span>
@@ -19,15 +25,15 @@ function Nav(props) {
                                     <span>{ item.title }</span>
                                 </span>
                             } 
-                            key={item.key}>
-                        { renderMenu(item.children) }
+                            key={item.path}>
+                        { this.renderMenu(item.routes) }
                     </SubMenu>
                 );
             }
             return (
-                <Item title={item.title} key={item.key}>
+                <Item title={item.title} key={item.path}>
                     { item.isLevel ? 
-                        <NavLink to={item.key}>
+                        <NavLink to={item.path}>
                             { item.icon && <Icon type={item.icon}/> }
                             <span>{item.title}</span>
                         </NavLink> 
@@ -41,22 +47,19 @@ function Nav(props) {
             );
         });
     }
-    const menuNodeTree = renderMenu(menuConfig);
-    useEffect(() => {
-        // setMenuNodeTree(renderMenu(menuConfig));
-        setPathname(props.location.pathname);
-    });
-    return (
-        <div className={style.nav_wrapper}>
-            <div className={style.logo}>
-                <img src={require('./../../assets/logo.svg')} alt="logo"/>
-                {props.collapsed? '' : <h1>Admin</h1>}
+    render() {
+        return (
+            <div className={style.nav_wrapper}>
+                <div className={style.logo}>
+                    <img src={require('./../../assets/logo.svg')} alt="logo"/>
+                    {this.props.collapsed? '' : <h1>Admin</h1>}
+                </div>
+                <Menu mode="inline" theme="dark" defaultSelectedKeys={[this.state.pathname]}>
+                    { this.state.menuNodeTree }
+                </Menu>
             </div>
-            <Menu theme="dark" defaultSelectedKeys={[pathname]}>
-                { menuNodeTree }
-            </Menu>
-        </div>
-    );
+        );
+    }
 }
 
 export default withRouter(Nav);

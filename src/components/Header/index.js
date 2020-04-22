@@ -16,7 +16,7 @@ export default function(props) {
         if(user){
             setUsername(JSON.parse(user).username)
         }
-    })
+    }, [props.collapsed])
     const toggle = () => {
 
     }
@@ -40,6 +40,7 @@ export default function(props) {
                         onOk: logout
                     });
                 break;
+            default: break;
         }
     }
     return (

@@ -14,7 +14,7 @@ function Login(props) {
                     username: values.username,
                     password: values.password
                 }));
-                router.push('/admin/home');
+                router.push('/home');
             }
         });
     };

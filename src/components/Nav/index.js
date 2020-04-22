@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import NavLink from 'umi/navlink';
 import withRouter from 'umi/withRouter';
 import { Menu, Icon } from "antd";
-import menuConfig from "../../config/menuConfig.js";
+import menuConfig from "../../config/routerConfig.js";
 import style from './index.less';
 
 const { SubMenu, Item } = Menu;
@@ -17,7 +17,7 @@ class Nav extends Component{
     }
     renderMenu = menuConfig => {
         return menuConfig.map((item) => {
-            if(item.children){
+            if(item.routes){
                 return (
                     <SubMenu title={
                                 <span>
@@ -25,15 +25,15 @@ class Nav extends Component{
                                     <span>{ item.title }</span>
                                 </span>
                             } 
-                            key={item.key}>
-                        { this.renderMenu(item.children) }
+                            key={item.path}>
+                        { this.renderMenu(item.routes) }
                     </SubMenu>
                 );
             }
             return (
-                <Item title={item.title} key={item.key}>
+                <Item title={item.title} key={item.path}>
                     { item.isLevel ? 
-                        <NavLink to={item.key}>
+                        <NavLink to={item.path}>
                             { item.icon && <Icon type={item.icon}/> }
                             <span>{item.title}</span>
                         </NavLink> 
@@ -54,7 +54,7 @@ class Nav extends Component{
                     <img src={require('./../../assets/logo.svg')} alt="logo"/>
                     {this.props.collapsed? '' : <h1>Admin</h1>}
                 </div>
-                <Menu theme="dark" defaultSelectedKeys={[this.state.pathname]}>
+                <Menu mode="inline" theme="dark" defaultSelectedKeys={[this.state.pathname]}>
                     { this.state.menuNodeTree }
                 </Menu>
             </div>

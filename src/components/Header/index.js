@@ -47,7 +47,7 @@ export default function(props) {
         <Header className={style.header}>
              <Icon className={style.trigger} type={collapsed ? 'menu-unfold' : 'menu-fold'} onClick={toggle}/>
              <Popover content={
-                    <Menu selectable={false} onClick={menuClick} className={style.menu}>
+                    <Menu selectable={false} onClick={menuClick} style={{border: 'none'}}>
                         <Item key="0">个人信息</Item>
                         <Divider></Divider>
                         <Item key="1">系统设置</Item>

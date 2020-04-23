@@ -68,11 +68,64 @@ export default [
         ]
     },
     {
-        title: '员工管理',
+        title: '卡券管理',
+        path: '/ticket',
+        icon: 'file-text',
+        component: '/ticket',
+        isLevel: false,
+        routes: [
+            {
+                title: '优惠券',
+                path: '/ticket/discount',
+                component: '/ticket/discount',
+                isLevel: true
+            },
+            {
+                title: '限时券',
+                path: '/ticket/limit',
+                component: '/ticket/limit',
+                isLevel: true
+            },
+            {
+                title: '新人券',
+                path: '/ticket/customer',
+                component: '/ticket/customer',
+                isLevel: true
+            },
+            {
+                title: '兑换码',
+                path: '/ticket/code',
+                component: '/ticket/code',
+                isLevel: true
+            }
+        ]
+    },
+    {
+        title: '用户管理',
         path: '/user',
         icon: 'user',
         component: '/user',
-        isLevel: true
+        isLevel: false,
+        routes: [
+            {
+                title: '个人中心',
+                path: '/user/personal',
+                component: '/user/personal',
+                isLevel: true
+            },
+            {
+                title: '用户列表',
+                path: '/user/list',
+                component: '/user/list',
+                isLevel: true
+            },
+            {
+                title: '意见反馈',
+                path: '/user/feedback',
+                component: '/user/feedback',
+                isLevel: true
+            }
+        ]
     },
     {
         title: '车辆地图',

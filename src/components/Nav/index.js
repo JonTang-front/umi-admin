@@ -54,9 +54,13 @@ class Nav extends Component{
                     <img src={require('./../../assets/logo.svg')} alt="logo"/>
                     {this.props.collapsed? '' : <h1>Admin</h1>}
                 </div>
-                <Menu mode="inline" theme="dark" defaultSelectedKeys={[this.state.pathname]}>
-                    { this.state.menuNodeTree }
-                </Menu>
+                <div className={style.menu_wrapper}>
+                    <div className={style.menu}>
+                        <Menu mode="inline" theme="dark" defaultSelectedKeys={[this.state.pathname]}>
+                            { this.state.menuNodeTree }
+                        </Menu>
+                    </div>
+                </div>
             </div>
         );
     }

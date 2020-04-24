@@ -17,7 +17,7 @@ class Top extends Component{
         collapsed: this.props.system.collapsed
     }
     componentWillMount() {
-        const user = handleLocalStorage.get('user');
+        const user = handleLocalStorage.getItem('user');
         if(user){
             this.setState({
                 username: JSON.parse(user).username
@@ -56,7 +56,6 @@ class Top extends Component{
         }
     }
     render() {
-        console.log(this.state);
         return (
             <Header className={style.header}>
                  <Icon className={style.trigger} type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} onClick={this.toggle}/>

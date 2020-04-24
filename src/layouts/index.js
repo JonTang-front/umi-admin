@@ -16,7 +16,7 @@ const { handleLocalStorage } = Util;
 }))
 class Main extends Component{
     render() {
-        const user = handleLocalStorage.get('user');
+        const user = handleLocalStorage.getItem('user');
         if(this.props.location.pathname==='/login'){
             return this.props.children;
         }else{

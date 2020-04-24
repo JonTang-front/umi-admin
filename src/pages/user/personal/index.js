@@ -1,7 +1,7 @@
 export default function(props) {
     return (
         <div>
-            user...
+            个人中心...
         </div>
     )
 }

@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import NavLink from 'umi/navlink';
 import withRouter from 'umi/withRouter';
+import { connect } from 'dva';
 import { Menu, Icon } from "antd";
 import menuConfig from "../../config/routerConfig.js";
 import style from './index.less';
 
 const { SubMenu, Item } = Menu;
+@connect(({ system }) => ({
+    system
+}))
 class Nav extends Component{
     state = {}
     componentWillMount() {
@@ -52,11 +56,19 @@ class Nav extends Component{
             <div className={style.nav_wrapper}>
                 <div className={style.logo}>
                     <img src={require('./../../assets/logo.svg')} alt="logo"/>
-                    {this.props.collapsed? '' : <h1>Admin</h1>}
+                    {this.props.system.collapsed? '' : <h1>Admin</h1>}
                 </div>
-                <Menu mode="inline" theme="dark" defaultSelectedKeys={[this.state.pathname]}>
-                    { this.state.menuNodeTree }
-                </Menu>
+                <div className={style.menu_wrapper}>
+                    <div className={style.menu}>
+                        <Menu 
+                            mode="inline" 
+                            theme="dark" 
+                            defaultSelectedKeys={[this.state.pathname]}
+                        >
+                            { this.state.menuNodeTree }
+                        </Menu>
+                    </div>
+                </div>
             </div>
         );
     }

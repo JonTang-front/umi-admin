@@ -1,16 +1,17 @@
 export default {
     handleLocalStorage: {
-        set(key, value, exprid=99999999) {
+        setItem(key, value, exprid=99999999) {
             let data = {
                 value, 
                 expirse: Date.now() + exprid
             };
             localStorage.setItem(key, JSON.stringify(data));
+            return this;
         },
-        get(key) {
+        getItem(key) {
             let data = JSON.parse(localStorage.getItem(key));
-            if(data && data.expirse>=Date.now()){
-                const { expirse, value } = data;
+            if(data && data.expirse >= Date.now()){
+                const { value } = data;
                 return value;
             }else{
                 localStorage.removeItem(key);
@@ -19,6 +20,7 @@ export default {
         },
         removeItem(key) {
             localStorage.removeItem(key);
+            return this;
         },
         clear() {
             localStorage.clear();

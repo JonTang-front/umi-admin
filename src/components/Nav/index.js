@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import NavLink from 'umi/navlink';
 import withRouter from 'umi/withRouter';
 import { connect } from 'dva';
-import { Menu, Icon } from "antd";
+import { Menu } from "antd";
+import IconFont from './../IconFont';
 import menuConfig from "../../config/routerConfig.js";
 import style from './index.less';
 
@@ -25,7 +26,7 @@ class Nav extends Component{
                 return (
                     <SubMenu title={
                                 <span>
-                                    { item.icon && <Icon type={ item.icon } /> }
+                                    { item.icon && <IconFont type={ item.icon } /> }
                                     <span>{ item.title }</span>
                                 </span>
                             } 
@@ -38,12 +39,12 @@ class Nav extends Component{
                 <Item title={item.title} key={item.path}>
                     { item.isLevel ? 
                         <NavLink to={item.path}>
-                            { item.icon && <Icon type={item.icon}/> }
+                            { item.icon && <IconFont type={item.icon}/> }
                             <span>{item.title}</span>
                         </NavLink> 
                         : 
                         <span>
-                            { item.icon && <Icon type={item.icon}/> }
+                            { item.icon && <IconFont type={item.icon}/> }
                             <span>{item.title}</span>
                         </span> 
                     }
@@ -56,7 +57,7 @@ class Nav extends Component{
             <div className={style.nav_wrapper}>
                 <div className={style.logo}>
                     <img src={require('./../../assets/logo.svg')} alt="logo"/>
-                    {this.props.system.collapsed? '' : <h1>Admin</h1>}
+                    {this.props.system.collapsed? '' : <h1>叮咚管理</h1>}
                 </div>
                 <div className={style.menu_wrapper}>
                     <div className={style.menu}>

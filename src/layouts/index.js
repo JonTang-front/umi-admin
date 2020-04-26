@@ -1,5 +1,6 @@
-import Redirect from 'umi/redirect';
+import router from 'umi/router';
 import BaseLayout from './baseLayout';
+import Login from './../pages/login';
 import Util from './../util';
 
 const { handleLocalStorage } = Util;
@@ -9,9 +10,10 @@ export default function(props){
         return props.children;
     }else{
         if(token){
-            return <BaseLayout>{ props.children }</BaseLayout>
+            return (<BaseLayout>{ props.children }</BaseLayout>);
         }else{
-            return <Redirect to="/login" />;
+            router.push('/login');
+            return (<Login/>);
         }
     }
 }

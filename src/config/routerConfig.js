@@ -2,21 +2,21 @@ export default [
     {
         title: '首页',
         path: '/home',
-        icon: 'icon-shouye',
+        icon: 'icon-home',
         component: '/home',
         isLevel: true
     },
     {
         title: '数据分析',
         path: '/chart',
-        icon: 'icon-areachart',
+        icon: 'icon-chart',
         component: '/chart',
         isLevel: true
     },
     {
         title: '产品管理',
         path: '/product',
-        icon: 'icon-chanpinguanli',
+        icon: 'icon-product',
         component: '/product',
         isLevel: false,
         routes: [
@@ -43,7 +43,7 @@ export default [
     {
         title: '订单管理',
         path: '/order',
-        icon: 'icon-dingdanguanli',
+        icon: 'icon-order',
         component: '/order',
         isLevel: false,
         routes: [
@@ -70,7 +70,7 @@ export default [
     {
         title: '卡券管理',
         path: '/ticket',
-        icon: 'icon-youhuiquan',
+        icon: 'icon-ticket',
         component: '/ticket',
         isLevel: false,
         routes: [
@@ -103,7 +103,7 @@ export default [
     {
         title: '用户管理',
         path: '/user',
-        icon: 'icon-yonghu1',
+        icon: 'icon-user',
         component: '/user',
         isLevel: false,
         routes: [
@@ -130,7 +130,7 @@ export default [
     {
         title: '权限设置',
         path: '/config',
-        icon: 'icon-quanxianguanli1',
+        icon: 'icon-setting',
         component: '/config',
         isLevel: true
     }

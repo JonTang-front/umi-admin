@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react';
 import Header from './../../components/Header';
 import Nav from './../../components/Nav';
@@ -27,7 +28,11 @@ class BaseLayout extends Component{
                         </TransitionGroup>
                     </Content>
                     <Footer className={style.footer}>
-                        Copyright © 2020 JonTang. All Rights Reserved. JonTang 版权所有
+                        Copyright © 2020 JonTang. All Rights Reserved. 
+                        <a href="https://github.com/jontang-web" target="_blank">
+                            JonTang
+                            <img className={style.github_img} src={require('./../../assets/github.png')} alt=""/>
+                        </a> 版权所有
                     </Footer>
                 </Layout>
             </Layout>

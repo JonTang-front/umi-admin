@@ -17,7 +17,6 @@ export default [
         title: '产品管理',
         path: '/product',
         icon: 'icon-product',
-        component: '/product',
         isLevel: false,
         routes: [
             {

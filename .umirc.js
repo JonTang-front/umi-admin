@@ -114,12 +114,6 @@ export default {
           isLevel: false,
           routes: [
               {
-                  title: '个人中心',
-                  path: '/user/personal',
-                  component: './user/personal',
-                  isLevel: true
-              },
-              {
                   title: '用户列表',
                   path: '/user/list',
                   component: './user/list',
@@ -130,6 +124,12 @@ export default {
                   path: '/user/feedback',
                   component: './user/feedback',
                   isLevel: true
+              },
+              {
+                title: '个人中心',
+                path: '/user/:id',
+                component: './user/personal',
+                isLevel: true
               }
           ]
         },

@@ -2,7 +2,7 @@ export default {
     'POST /api/login': (req, res) => {
         setTimeout(() => {
             const { password, username } = req.body;
-            if (password === 'admin' && username === 'admin') {
+            if ((password === 'admin' && username === 'admin') || (password === 'guest' && username === 'guest')) {
             res.send({
                 code: 200,
                 data: {

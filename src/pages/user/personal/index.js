@@ -1,7 +1,7 @@
 export default function(props) {
     return (
         <div>
-            个人中心...
+            {decodeURIComponent(props.match.params.id)}
         </div>
     )
 }

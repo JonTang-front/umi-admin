@@ -40,9 +40,9 @@ class Top extends Component{
     }
     menuClick = ({key}) => {
         switch(key){
-            case '0': router.push('/user/personal');
+            case '0': router.push(`/user/${encodeURIComponent(this.state.username)}`);
                 break;
-            case '1': router.push('/user/personal');
+            case '1': router.push('/config');
                 break;
             case '2': Modal.confirm({
                         title: '是否退出?',

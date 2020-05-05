@@ -1,8 +1,8 @@
-export default {
+import { delay } from 'roadhog-api-doc';
+export default delay({
     'POST /api/login': (req, res) => {
-        setTimeout(() => {
-            const { password, username } = req.body;
-            if ((password === 'admin' && username === 'admin') || (password === 'guest' && username === 'guest')) {
+        const { password, username } = req.body;
+        if ((password === 'admin' && username === 'admin') || (password === 'guest' && username === 'guest')) {
             res.send({
                 code: 200,
                 data: {
@@ -10,13 +10,12 @@ export default {
                     currentAuthority: username
                 },
                 message: 'success'
-            })
+            });
             return;
-            }
-            res.send({
+        }
+        res.send({
             code: 500,
             message: '用户名或者密码错误'
-            });
-        }, 1000);
+        });
     }
-}
+}, 1000);

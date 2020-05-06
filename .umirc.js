@@ -1,6 +1,6 @@
 // ref: https://umijs.org/config/
+import path from 'path';
 export default {
-  history: 'hash',
   routes: [
     {
       path: '/',
@@ -166,4 +166,16 @@ export default {
       },
     }],
   ],
+  alias: {
+    Components: path.resolve(__dirname, 'src/components/'),
+    Util: path.resolve(__dirname, 'src/util/'),
+    Api: path.resolve(__dirname, 'src/api/')
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:8000/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/api" : "" }
+    }
+  }
 }

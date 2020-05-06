@@ -1,6 +1,6 @@
 import { delay } from 'roadhog-api-doc';
 export default delay({
-    'POST /api/login': (req, res) => {
+    'POST /login': (req, res) => {
         const { password, username } = req.body;
         if ((password === 'admin' && username === 'admin') || (password === 'guest' && username === 'guest')) {
             res.send({

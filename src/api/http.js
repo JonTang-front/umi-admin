@@ -1,5 +1,5 @@
 import { message } from 'antd';
-import Util from '../util';
+import Util from 'Util';
 const fetch = require('dva').fetch;
 
 const { handleLocalStorage } = Util;
@@ -37,7 +37,8 @@ export default {
               'Authorization': token,//登录令牌
               'Accept': 'application/json'
             },
-            credentials: 'include'
+            mode: 'cors',
+            credentials: 'include',
         }).then(res => {
             if(res.ok && res.status===200){
                 return res.json();
@@ -63,6 +64,7 @@ export default {
               'Accept': 'application/json'
             },
             body: JSON.stringify(params),
+            mode: 'cors',
             credentials: 'include'
         }).then(res => {
             if(res.ok && res.status===200){

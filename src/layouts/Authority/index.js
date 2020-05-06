@@ -1,7 +1,7 @@
 // import router from 'umi/router';
 // import BaseLayout from './../BaseLayout';
 // import Login from './../../pages/login';
-// import Util from './../../util';
+// import Util from 'Util';
 
 // const { handleLocalStorage } = Util;
 // export default function(props){

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import router from 'umi/router';
 import { connect } from 'dva';
 import { Layout, Icon, Avatar, Popover, Menu, Modal } from 'antd';
-import Util from './../../util';
+import Util from 'Util';
 import style from './index.less';
 
 const { Header } = Layout;

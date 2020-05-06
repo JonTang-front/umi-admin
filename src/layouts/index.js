@@ -6,11 +6,10 @@
 import router from 'umi/router';
 import BaseLayout from './baseLayout';
 import Login from './../pages/login';
-import Util from './../util';
+import Util from 'Util';
 
 const { handleLocalStorage } = Util;
 export default function(props){
-    console.log('layouts/index');
     const token = handleLocalStorage.getItem('_TOKEN');
     if(props.location.pathname==='/login'){
         return props.children;

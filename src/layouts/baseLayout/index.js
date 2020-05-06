@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react';
-import Header from './../../components/Header';
-import Nav from './../../components/Nav';
+import Header from 'Components/Header';
+import Nav from 'Components/Nav';
 import { Layout } from 'antd';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { connect } from 'dva';
@@ -28,7 +28,7 @@ class BaseLayout extends Component{
                         </TransitionGroup>
                     </Content>
                     <Footer className={style.footer}>
-                        Copyright © 2020 JonTang. All Rights Reserved. 
+                        Copyright © 2020 JonTang. All Rights Reserved.
                         <a href="https://github.com/jontang-web" target="_blank">
                             JonTang
                             <img className={style.github_img} src={require('./../../assets/github.png')} alt=""/>

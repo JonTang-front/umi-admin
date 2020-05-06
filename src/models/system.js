@@ -1,7 +1,8 @@
 import { routerRedux } from 'dva/router';
-import API from './../api';
-import Util from './../util';
+import API from 'Api';
+import Util from 'Util';
 const { handleLocalStorage } = Util;
+
 export default {
     namespace: 'system',
     state: {
@@ -32,7 +33,7 @@ export default {
     subscriptions: {
         setupHistory({ history }){
             history.listen((location) => {
-                console.log(location)   //这里可以获取当前变化的history路径以及参数，hash所有值，这样就可以在路由地址变化后做处理
+                  //这里可以获取当前变化的history路径以及参数，hash所有值，这样就可以在路由地址变化后做处理
             });
         }
     }

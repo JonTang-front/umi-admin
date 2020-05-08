@@ -5,6 +5,8 @@ const fetch = require('dva').fetch;
 const { handleLocalStorage } = Util;
 const token = handleLocalStorage.getItem('_TOKEN');
 
+
+
 const _fetch = (fetch, timeout = 3000) => {
      return Promise.race([
         fetch,
@@ -21,6 +23,11 @@ const _fetch = (fetch, timeout = 3000) => {
 
 export default {
     get(url, params) {
+/**
+ * AbortController通过abort API 控制 AbortSignal 的状态，动态取消fetch请求。下同
+ */
+        const controller = new AbortController();
+        const { signal } = controller;
         if(params) {
             let paramsArray = [];
             //拼接参数
@@ -39,6 +46,7 @@ export default {
             },
             mode: 'cors',
             credentials: 'include',
+            signal
         }).then(res => {
             if(res.ok && res.status===200){
                 return res.json();
@@ -51,11 +59,14 @@ export default {
                         return result;
                     }else{
                         message.error(result.message);
+                        controller.abort();
                         return;
                     }
                 }).catch(err => Promise.reject(err));
     },
     post(url, params) {
+        const controller = new AbortController();
+        const { signal } = controller;
         const postFetch = fetch(url, {
             method: 'POST',
             headers: {
@@ -65,7 +76,8 @@ export default {
             },
             body: JSON.stringify(params),
             mode: 'cors',
-            credentials: 'include'
+            credentials: 'include',
+            signal
         }).then(res => {
             if(res.ok && res.status===200){
                 return res.json();
@@ -78,6 +90,7 @@ export default {
                         return result;
                     }else{
                         message.error(result.message);
+                        controller.abort();
                         return;
                     }
                 }).catch(err => Promise.reject(err));

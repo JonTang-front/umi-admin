@@ -1,11 +1,10 @@
 import { message } from 'antd';
 import Util from 'Util';
 const fetch = require('dva').fetch;
-
+const SuccessCode = 200;
+const TimeoutCode = 504;
 const { handleLocalStorage } = Util;
 const token = handleLocalStorage.getItem('_TOKEN');
-
-
 
 const _fetch = (fetch, timeout = 3000) => {
      return Promise.race([
@@ -13,7 +12,7 @@ const _fetch = (fetch, timeout = 3000) => {
         new Promise(function(resolve, reject) {
             setTimeout(() => {
                 resolve({
-                    code: 504,
+                    code: TimeoutCode,
                     message: "请求超时"
                 });
             }, timeout);
@@ -47,22 +46,19 @@ export default {
             mode: 'cors',
             credentials: 'include',
             signal
-        }).then(res => {
-            if(res.ok && res.status===200){
+        });
+        return _fetch(getFetch).then(res => {
+            if(res.ok && res.status===SuccessCode){
                 return res.json();
             }else{
-                return Promise.reject('fail');
+                if(res.status===TimeoutCode){
+                    controller.abort();
+                }
+                return Promise.reject(res.message || res.statusText);
             }
+        }).catch(err => {
+            return Promise.reject(err);
         });
-        return _fetch(getFetch).then(result => {
-                    if(result.code===200){
-                        return result;
-                    }else{
-                        message.error(result.message);
-                        controller.abort();
-                        return;
-                    }
-                }).catch(err => Promise.reject(err));
     },
     post(url, params) {
         const controller = new AbortController();
@@ -78,21 +74,18 @@ export default {
             mode: 'cors',
             credentials: 'include',
             signal
-        }).then(res => {
-            if(res.ok && res.status===200){
+        });
+        return _fetch(postFetch).then(res => {
+            if(res.ok && res.status===SuccessCode){
                 return res.json();
             }else{
-                return Promise.reject('fail');
+                if(res.status===TimeoutCode){
+                    controller.abort();
+                }
+                return Promise.reject(res.message || res.statusText);
             }
+        }).catch(err => {
+            return Promise.reject(err);
         });
-        return _fetch(postFetch).then(result => {
-                    if(result.code===200){
-                        return result;
-                    }else{
-                        message.error(result.message);
-                        controller.abort();
-                        return;
-                    }
-                }).catch(err => Promise.reject(err));
     }
 }

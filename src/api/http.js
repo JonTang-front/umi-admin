@@ -54,11 +54,10 @@ export default {
                 if(res.status===TimeoutCode){
                     controller.abort();
                 }
+                message.error(res.statusText);
                 return Promise.reject(res.message || res.statusText);
             }
-        }).catch(err => {
-            return Promise.reject(err);
-        });
+        }).catch(err => Promise.reject(err));
     },
     post(url, params) {
         const controller = new AbortController();
@@ -82,10 +81,9 @@ export default {
                 if(res.status===TimeoutCode){
                     controller.abort();
                 }
-                return Promise.reject(res.message || res.statusText);
+                message.error(res.statusText);
+                return Promise.reject(res.statusText);
             }
-        }).catch(err => {
-            return Promise.reject(err);
-        });
+        }).catch(err => Promise.reject(err));
     }
 }

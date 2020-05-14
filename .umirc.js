@@ -171,7 +171,8 @@ export default {
     Util: path.resolve(__dirname, 'src/util/'),
     Api: path.resolve(__dirname, 'src/api/')
   },
-  "proxy": {
+  devtool: 'source-map',
+  proxy: {
     "/api": {
       "target": "http://localhost:8000/",
       "changeOrigin": true,

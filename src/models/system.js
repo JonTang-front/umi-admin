@@ -1,6 +1,7 @@
 import { routerRedux } from 'dva/router';
 import API from 'Api';
 import Util from 'Util';
+import { message } from 'antd';
 const { handleLocalStorage } = Util;
 
 export default {
@@ -12,9 +13,14 @@ export default {
         *login({ payload }, { call, put }) {
             const res = yield call(API.login, payload);
             if(res){
-                const { token } = res;
-                handleLocalStorage.setItem('_TOKEN', token, 3*3600*1000).setItem('username', payload.username);
-                yield put(routerRedux.push('/home'));
+                const { code, msg } = res;
+                if(code===200){
+                    const { token } = res;
+                    handleLocalStorage.setItem('_TOKEN', token, 3*3600*1000).setItem('username', payload.username);
+                    yield put(routerRedux.push('/home'));
+                }else if(code===500){
+                    message.error(msg);
+                }
             }
         },
         *logout(_, { call }) {

@@ -1,4 +1,3 @@
-import { message } from 'antd';
 import Util from 'Util';
 const fetch = require('dva').fetch;
 const SuccessCode = 200;
@@ -54,7 +53,6 @@ export default {
                 if(res.status===TimeoutCode){
                     controller.abort();
                 }
-                message.error(res.statusText);
                 return Promise.reject(res.message || res.statusText);
             }
         }).catch(err => Promise.reject(err));
@@ -81,7 +79,6 @@ export default {
                 if(res.status===TimeoutCode){
                     controller.abort();
                 }
-                message.error(res.statusText);
                 return Promise.reject(res.statusText);
             }
         }).catch(err => Promise.reject(err));
